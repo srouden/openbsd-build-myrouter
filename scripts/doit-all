@@ -1,0 +1,6 @@
+#!/bin/ksh
+
+for idx in `ls 0*.sh`
+do
+	echo $idx
+done

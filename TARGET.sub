@@ -1,0 +1,6 @@
+# include file
+
+RELEASE="OPENBSD_6_1"
+VER="61"
+CVSROOT="anoncvs@ftp.hostserver.de:/cvs"
+RELEASEDIR="/usr/release/"
