@@ -19,4 +19,4 @@ fi
 ./build_openbsd.py --cvs_tag $RELEASE --build userland
 ./build_openbsd.py --cvs_tag $RELEASE --build release
 
-cd WDIR
+cd $WDIR
