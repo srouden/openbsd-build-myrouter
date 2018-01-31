@@ -1,6 +1,6 @@
 [submodule "openbsd-build-tools"]
 	path = openbsd-build-tools
-	url = https://github.com/khorsmann/openbsd-build-tools
+	url = https://github.com/srouden/openbsd-build-tools
 [submodule "flashrd"]
 	path = flashrd
-	url = https://github.com/khorsmann/flashrd
+	url = https://github.com/srouden/flashrd

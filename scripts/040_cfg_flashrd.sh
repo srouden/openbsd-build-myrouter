@@ -1,19 +1,34 @@
 #!/bin/ksh
-FLASHRD_DIR=../flashrd
-imagefile=`find ${FLASHRD_DIR} -type f -iname flashimg\* | head -n 1`
-tzfile="/usr/share/zoneinfo/Europe/Berlin"
-keyboard="de"
-nameserver="8.8.8.8"
-ntpserver="pool.ntp.org"
-myhostname="r1.karstens.lan"
 
+if [ ! -f ../TARGET.sub ] ; then
+	echo "../TARGET.sub not found"
+	exit 1
+fi
+
+. ../TARGET.sub
+
+if [ ! -d $FLASHRD_DIR ] ; then
+	echo "$FLASHRD_DIR not found"
+	exit 1
+fi
+
+if [ "x${IMAGEDIR}" = "x" ] ; then
+  IMAGEDIR=$FLASHRD_DIR
+fi
+
+imagefile=`find ${IMAGEDIR} -type f -iname flashimg\* | head -n 1`
 cd ${FLASHRD_DIR}
 
-./cfgflashrd -image $imagefile \
-	-c "38400" \
+[ -f $SKELDIR/onetime.tgz ] && onetime="-o $SKELDIR/onetime.tgz"
+
+c ./cfgflashrd -image $imagefile \
+	-c $baudrate \
 	-t $tzfile \
 	-k $keyboard \
+	$onetime \
 	-dns $nameserver \
 	-ntp $ntpserver \
 	-hostname $myhostname
 
+echo "flashrd image $imagefile configured"
+echo "$0 done"

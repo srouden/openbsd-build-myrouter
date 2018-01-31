@@ -1,7 +1,11 @@
 #!/bin/ksh
 
-for idx in `ls 0*.sh`
-do
+for idx in `ls 0*.sh` ; do
 	echo $idx
-	ksh $idx
+	./$idx
+	status=$?
+	if [ $status -ne 0 ] ; then
+		echo "$idx failed"
+		exit 1
+	fi
 done

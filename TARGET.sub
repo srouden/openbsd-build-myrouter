@@ -1,6 +1,37 @@
 # include file
 
-RELEASE="OPENBSD_6_1"
-VER="61"
-CVSROOT="anoncvs@ftp.hostserver.de:/cvs"
+RELEASE="OPENBSD_6_2"
+VER="62"
+#CVSROOT="anoncvs@ftp.hostserver.de:/cvs"
+CVSROOT="anoncvs@anoncvs.eu.openbsd.org:/cvs"
 RELEASEDIR="/usr/release/"
+#TEMPDIR="/tmp/openbsd"
+TEMPDIR="/usr/release/tmp_openbsd"
+FLASHRD_DIR="../flashrd"
+SKELDIR="skel"
+DISKSECTORS=4194304
+IMAGEDIR=$RELEASEDIR
+
+# Clean up /usr/obj before making flashrd image
+CLEAN_OBJ="no"
+
+# configuration info for flashrd
+baudrate="38400"
+tzfile="/usr/share/zoneinfo/Europe/Stockholm"
+keyboard="us"
+nameserver="208.67.220.220 208.67.222.222"
+ntpserver="0.se.pool.ntp.org 1.se.pool.ntp.org 2.se.pool.ntp.org 3.se.pool.ntp.org"
+mydomain=""
+myhostname=""
+
+
+# Very simple harness to check if a call worked
+c() {
+  [ -z "$*" ] && exit 1
+
+  if ! eval $*; then
+    echo "$* failed"
+    exit 1
+  fi
+}
+
